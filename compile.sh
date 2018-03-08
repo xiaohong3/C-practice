@@ -6,5 +6,5 @@ path="$PWD/$outputName.cpp"
 
 echo $PWD
 echo $path
-cmdToRun="g++ -o $outputName \"${path}\" -std=c++11"
+cmdToRun="g++ -o $outputName \"${path}\" -std=c++11 -Wall"
 eval "${cmdToRun}"
