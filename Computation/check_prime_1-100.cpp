@@ -24,32 +24,44 @@ bool isPrime(int number) {
     }
 }
 
-int main() {
+vector<int> getFirstNPrimes(unsigned n) {
+    vector<int> primeSequence;
+    int i = 2;
+    while(primeSequence.size() <= n) {
+        if (isPrime(i)) {
+            primeSequence.push_back(i);
+        }
+        ++i;
+    }
+    return primeSequence;
+}
+
+vector<int> getPrimes(unsigned max) {
     vector<int> primesFound;
-    int max;
-
-    cout << "Max number you want is: ";
-    cout << "\n";
-
-    cin >> max;
-
-    for (int i = 2; i <= max; ++i) {
+    for (unsigned i = 2; i <= max; ++i) {
         if (isPrime(i)) {
             primesFound.push_back(i);
         }
     }
+    return primesFound;
+}
 
-    cout << "Primes between 1 - " << max << " are: ";
+int main() {
+    // unsigned max;
+    // cout << "Max number you want is: ";
+    // cout << "\n";
+    // cin >> max;
+    // for(unsigned i : getPrimes(max)) {
+    //     cout << i;
+    //     cout << "\n";
+    // }
+
+    unsigned n;
+    cout << "The number of primes you want is: ";
     cout << "\n";
-
-    int count = 0;
-    for (int prime : primesFound) {
-        cout << prime;
+    cin >> n;
+    for (unsigned i : getFirstNPrimes(n)) {
+        cout << i;
         cout << "\n";
-
-        ++count;
     }
-
-    cout << "Total primes found: " << count;
-    cout << "\n";
 }
