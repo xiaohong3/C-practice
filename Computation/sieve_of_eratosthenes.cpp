@@ -1,27 +1,28 @@
 #include "../std_lib_facilities.h"
 
 vector<int> getAllPrimes(int max) {
-    vector<bool> sequence (max - 1);
+    vector<bool> isComposite (max - 1);
     int start = 2;
-    bool stop = false;
     vector<int> result;
-    while(!stop) {
-        for (int i = 2; i * start <= max; ++i) {
-            int composite = i * start;
-            sequence.at(composite - 2) = true;
+    bool quit = false;
+    while(!quit) {
+        for (int multiplier = 2; multiplier * start <= max; ++multiplier) {
+            int composite = multiplier * start;
+            isComposite.at(composite - 2) = true;
         }
 
-        for (unsigned i = (start - 1); i < sequence.size(); ++i) {
-            if (!sequence.at(i)) {
-                start = i + 2;
+        quit = true;
+        for (unsigned i = start + 1; i < isComposite.size(); ++i) {
+            if (!isComposite.at(i - 2)) {
+                start = i;
+                quit = false;
                 break;
             }
-            stop = true;
         }
     }
 
-    for (unsigned i = 0; i < sequence.size(); ++i) {
-        if (!sequence.at(i)) {
+    for (unsigned i = 0; i < isComposite.size(); ++i) {
+        if (!isComposite.at(i)) {
             result.push_back(i + 2);
         }
     }
