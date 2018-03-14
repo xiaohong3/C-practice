@@ -1,4 +1,4 @@
-#include "./Token.h";
+#include "./Token.h"
 
 class Calculator {
     public:
