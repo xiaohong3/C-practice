@@ -192,16 +192,22 @@ double primary()
 	case 'p':
 	{
 		t = ts.get();
-		if (t.kind != number) {
-			error("The first argument of power method should be a double number");
+		if (t.kind != '(') {
+			error("'(' expected");
 		}
-		const double base = t.value;
+
+		double base = expression();
 		t = ts.get();
 		if (t.kind != comma) {
 			error("Method power should use comma to separate base and power");
 		}
+
+		int power = narrow_cast<int>(expression());
 		t = ts.get();
-		const int power = narrow_cast<int>(t.value);
+		if (t.kind != ')') {
+			error("')' expected");
+		}
+		
 		return pow(base, power);
 	}
 	case '-':
