@@ -43,3 +43,14 @@ string Book::getAuthor() {
 string Book::getTitle() {
     return title;
 }
+
+bool operator==(const Book& a, const Book& b) {
+    if (a.getISBN() == b.getISBN()) {
+        return true;
+    }
+    return false;
+}
+
+bool operator!=(const Book& a, const Book& b) {
+    return a.getISBN() != b.getISBN() ? true : false;
+}
